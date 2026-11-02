@@ -2,25 +2,44 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Enemy Lines — Online Medieval PvP</title><link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#111713"><meta name="description" content="Enemy Lines — online medieval tactical combat">
+<title>ENEMY LINES — Medieval Tactical Combat</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="shell">
-  <header><div><div class="eyebrow">ONLINE MEDIEVAL PvP · PROTOTYPE 0.2</div><h1>ENEMY <span>LINES</span></h1></div><div class="status"><i id="dot"></i><span id="connection">Sunucuya bağlanıyor…</span></div></header>
-  <main>
-    <section class="game-wrap">
-      <div class="hud"><div><small>MOD</small><b>KALE KUŞATMASI · TEST ARENASI</b></div><div class="teams"><span class="blue">MAVİ <b id="blueScore">0</b></span><span class="red">KIRMIZI <b id="redScore">0</b></span></div></div>
-      <canvas id="game" width="1000" height="700"></canvas>
-      <div class="bottom-hud"><span id="playerTag">Oyuncu bekleniyor</span><span class="health"><i id="healthBar"></i></span><b id="healthText">100 HP</b></div>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Enemy Lines ana sayfa"><span class="brand-mark">EL</span><span><strong>ENEMY <i>LINES</i></strong><small>MEDIEVAL TACTICAL COMBAT</small></span></a>
+    <div class="match-meta"><span class="live-dot" id="dot"></span><span id="connection">SUNUCUYA BAĞLANIYOR</span><span class="meta-divider"></span><span>KALE KUŞATMASI</span></div>
+    <div class="top-actions"><span class="region-tag">EU · PUBLIC TEST</span><span class="version">BUILD 0.4</span></div>
+  </header>
+
+  <main class="layout">
+    <section class="battle-column">
+      <div class="matchbar">
+        <div class="team-score blue-score"><span class="team-icon">◆</span><div><small>MAVİ TAKIM</small><strong id="blueScore">00</strong></div></div>
+        <div class="match-center"><small>TAŞ AVLU · ARENA 01</small><strong>KUŞATMA ÇATIŞMASI</strong><span><b id="playersCount">0</b> / 10 SAVAŞÇI</span></div>
+        <div class="team-score red-score"><div><small>KIRMIZI TAKIM</small><strong id="redScore">00</strong></div><span class="team-icon">◆</span></div>
+      </div>
+      <div class="arena-frame">
+        <div class="arena-label"><span class="record-dot"></span> CANLI SAVAŞ ALANI <span class="arena-coords">SEKTÖR 04 / 09</span></div>
+        <canvas id="game" width="1000" height="700" aria-label="Enemy Lines oyun alanı"></canvas>
+        <div class="arena-vignette"></div>
+        <div class="arena-bottom"><span><kbd>W A S D</kbd> HAREKET</span><span><kbd>SHIFT</kbd> KOŞ</span><span><kbd>FARE</kbd> NİŞAN</span><span><kbd>SOL TIK</kbd> ATEŞ</span></div>
+      </div>
+      <div class="player-bar">
+        <div class="player-identity"><div class="avatar">✦</div><div><small>SAVAŞÇI</small><strong id="playerTag">BAĞLANTI BEKLENİYOR</strong></div></div>
+        <div class="vitals"><div class="vital-label"><span>SAĞLIK</span><strong id="healthText">100 HP</strong></div><div class="health-track"><i id="healthBar"></i></div></div>
+        <div class="weapon"><div class="weapon-art">➶</div><div><small>KUŞANILAN SİLAH</small><strong>UZUN YAY <em>· 01</em></strong></div></div>
+      </div>
     </section>
-    <aside>
-      <div class="panel"><div class="panel-title">SAVAŞ ALANI</div><h2>Taş Avlu</h2><p>Eski kalenin avlusunda rakip takımı alt et. Bu prototipte iki takım ve gerçek zamanlı ok atışı bulunur.</p><div class="stat"><span>Oyuncu sayısı</span><b id="playersCount">0 / 10</b></div><div class="stat"><span>Silah</span><b>Uzun yay</b></div><div class="stat"><span>Atış aralığı</span><b>650 ms</b></div></div>
-      <div class="panel"><div class="panel-title">KONTROLLER</div><div class="keyrow"><span>Hareket</span><b>W A S D</b></div><div class="keyrow"><span>Nişan</span><b>FARE</b></div><div class="keyrow"><span>Ok at</span><b>SOL TIK</b></div><div class="keyrow"><span>Koş</span><b>SHIFT</b></div><div class="keyrow"><span>Kaçınma</span><b>SPACE*</b></div><div class="hint">*Kaçınma ve diğer silahlar sonraki prototip aşamasında eklenecek.</div></div>
-      <div class="panel"><div class="panel-title">TEST BİLGİSİ</div><p class="hint">İki oyunculu test için bu sayfayı iki ayrı sekmede aç. Aynı bilgisayarda iki sekme de aynı sunucuya bağlanır.</p><div id="feed" class="feed">Savaş günlüğü hazır.</div></div>
+
+    <aside class="sidebar">
+      <section class="side-card map-card"><div class="card-heading"><span>OPERASYON</span><span class="tiny-tag">AKTİF</span></div><h1>Taş Avlu</h1><p>Eski kalenin iç avlusunda düşman takımını alt et. Siperleri kullan, mesafeni koru ve takımınla birlikte ilerle.</p><div class="map-preview"><div class="map-grid"><i></i><i></i><i></i><i></i><b class="map-player p1"></b><b class="map-player p2"></b><b class="map-player p3"></b></div><span>ARENA 01 · KUZEY KANADI</span></div><div class="info-row"><span>OYUN MODU</span><b>TAKIM ÖLÜM MAÇI</b></div><div class="info-row"><span>HARİTA BOYUTU</span><b>1000 × 700</b></div></section>
+      <section class="side-card"><div class="card-heading"><span>SAVAŞ KONTROLLERİ</span><span class="key-icon">⌘</span></div><div class="control-list"><div><span>Hareket</span><kbd>W A S D</kbd></div><div><span>Nişan al</span><kbd>FARE</kbd></div><div><span>Ok at</span><kbd>SOL TIK</kbd></div><div><span>Koş</span><kbd>SHIFT</kbd></div></div><p class="side-note">Kaçınma, yakın dövüş ve farklı silahlar sonraki sürümlerde eklenecek.</p></section>
+      <section class="side-card feed-card"><div class="card-heading"><span>SAVAŞ GÜNLÜĞÜ</span><span class="feed-live">● LIVE</span></div><div id="feed" class="feed">Savaş alanına bağlantı bekleniyor…</div><div class="server-status"><span>SUNUCU DURUMU</span><b><i></i> ÇEVRİMİÇİ TEST</b></div></section>
     </aside>
   </main>
-  <footer>Bu bir erken prototiptir. Hesap sistemi, eşleştirme, tur ekonomisi ve kalıcı istatistikler henüz eklenmedi.</footer>
+  <footer><span>ENEMY LINES <b>0.4.0</b> · ERKEN ERİŞİM PROTOTİPİ</span><span>OYUN İÇİ HESAPLAR VE DERECELİ EŞLEŞTİRME HENÜZ AKTİF DEĞİL</span></footer>
 </div>
-<script src="config.js"></script>
-<script src="game.js"></script>
+<script src="config.js"></script><script src="game.js"></script>
 </body></html>
