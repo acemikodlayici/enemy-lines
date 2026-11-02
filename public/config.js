@@ -1,3 +1,2 @@
-// GitHub Pages yayınından sonra buraya Render WebSocket adresini yaz.
-// Örnek: window.ARENA_WS_URL = "wss://enemy-lines-server.onrender.com/ws";
+// Enemy Lines Render WebSocket endpoint
 window.ARENA_WS_URL = "wss://enemy-lines-server.onrender.com/ws";
